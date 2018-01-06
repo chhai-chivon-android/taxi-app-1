@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public final class User implements Serializable {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -28,6 +29,10 @@ public final class User implements Serializable {
         this.username = username;
         this.passwordHash = passwordHash;
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public String getUsername() {

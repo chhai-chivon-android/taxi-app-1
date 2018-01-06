@@ -23,3 +23,7 @@ INSERT INTO user_role(user_id, role_id) VALUES(7,2);
 INSERT INTO user_role(user_id, role_id) VALUES(8,2);
 INSERT INTO user_role(user_id, role_id) VALUES(9,2);
 INSERT INTO user_role(user_id, role_id) VALUES(10,2);
+
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(1, 'lukigostek.client1', 1515249442, 51.125472, 17.050371, false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(2, 'lukigostek.client1', 1515449442, 51.122170, 17.052589, false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(3, 'lukigostek.client1', 1515249200, 51.119205, 17.053590, false);
