@@ -69,4 +69,38 @@ public class OrdersController {
 
        return new ResponseEntity<>(createdOrder, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/orders/unaccepted")
+    @PreAuthorize("hasAuthority('DRIVER')")
+    public ResponseEntity<Collection<Order>> getUnacceptedOrders() {
+        Collection<Order> unacceptedOrders = ordersRepository.findByFinishedAndAcceptedBy(false, "");
+
+        return new ResponseEntity<>(unacceptedOrders, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/orders/accepted")
+    @PreAuthorize("hasAuthority('DRIVER')")
+    public ResponseEntity<Collection<Order>> getMyAcceptedOrders(Principal principal) {
+        Collection<Order> acceptedOrders = ordersRepository.findByFinishedAndAcceptedBy(false,
+                principal.getName());
+
+        return new ResponseEntity<>(acceptedOrders, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/orders/{id}/accept")
+    @PreAuthorize("hasAuthority('DRIVER')")
+    public ResponseEntity acceptOrder(Principal principal, @PathVariable("id") Long orderId) {
+        Order orderToAccept = ordersRepository.findOne(orderId);
+
+        if (orderToAccept == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        else if (!orderToAccept.getAcceptedBy().isEmpty())
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        else {
+            orderToAccept.setAcceptedBy(principal.getName());
+            ordersRepository.save(orderToAccept);
+
+            return new ResponseEntity(HttpStatus.OK);
+        }
+    }
 }

@@ -7,4 +7,5 @@ import java.util.Collection;
 
 public interface OrdersRepository extends CrudRepository<Order, Long> {
     Collection<Order> findByUserAndFinished(String username, boolean finished);
+    Collection<Order> findByFinishedAndAcceptedBy(boolean finished, String acceptedBy);
 }

@@ -12,7 +12,6 @@ INSERT INTO users (id, password_hash, username) VALUES (8, '$2a$04$YqyKSDoA2HNsm
 INSERT INTO users (id, password_hash, username) VALUES (9, '$2a$04$YqyKSDoA2HNsmkdJ.eBoWufF2IsWsDN0xjBJ/faPpHCAzVOdJsRMe', 'lukigostek.driver4');
 INSERT INTO users (id, password_hash, username) VALUES (10, '$2a$04$YqyKSDoA2HNsmkdJ.eBoWufF2IsWsDN0xjBJ/faPpHCAzVOdJsRMe', 'lukigostek.driver5');
 
-
 INSERT INTO user_role(user_id, role_id) VALUES(1,1);
 INSERT INTO user_role(user_id, role_id) VALUES(2,1);
 INSERT INTO user_role(user_id, role_id) VALUES(3,1);
@@ -24,6 +23,7 @@ INSERT INTO user_role(user_id, role_id) VALUES(8,2);
 INSERT INTO user_role(user_id, role_id) VALUES(9,2);
 INSERT INTO user_role(user_id, role_id) VALUES(10,2);
 
-INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(1, 'lukigostek.client1', 1515249442, 51.125472, 17.050371, false);
-INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(2, 'lukigostek.client1', 1515449442, 51.122170, 17.052589, false);
-INSERT INTO orders(id, user, order_time, lattitude, langtitude, finished) VALUES(3, 'lukigostek.client1', 1515249200, 51.119205, 17.053590, false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, accepted_by, finished) VALUES(1, 'lukigostek.client1', 1515249442, 51.125472, 17.050371, '', false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, accepted_by, finished) VALUES(2, 'lukigostek.client1', 1515449442, 51.122170, 17.052589, 'lukigostek.driver1', false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, accepted_by, finished) VALUES(3, 'lukigostek.client1', 1515249200, 51.119205, 17.053590, '', false);
+INSERT INTO orders(id, user, order_time, lattitude, langtitude, accepted_by, finished) VALUES(4, 'lukigostek.client1', 1515249200, 51.119205, 17.053590, '', true);
