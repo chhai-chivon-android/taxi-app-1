@@ -1,16 +1,13 @@
 package com.gosiewski.taxiapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "TAXI_DRIVERS")
-public final class Driver implements Serializable {
-
+@Table(name = "users")
+public final class User implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -20,11 +17,17 @@ public final class Driver implements Serializable {
 
     private String passwordHash;
 
-    public Driver() {}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
 
-    public Driver(String username, String passwordHash) {
+    public User() {}
+
+    public User(String username, String passwordHash, List<Role> roles) {
         this.username = username;
         this.passwordHash = passwordHash;
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -41,5 +44,13 @@ public final class Driver implements Serializable {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
